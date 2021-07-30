@@ -2,7 +2,7 @@ package leetcode.editor.cn;
 
 import java.util.Stack;
 
-//Java：有效的括号
+//Java：20有效的括号
 class ValidParentheses {
     public static void main(String[] args) {
         Solution solution = new ValidParentheses().new Solution();
