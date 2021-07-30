@@ -35,3 +35,6 @@ out/production/LeetCodeTest/leetcode/editor/cn/translation.json
 .gitignore
 *.json
 *.iml
+*.md
+*.txt
+src/leetcode/editor/cn/ValidParentheses201324305.txt
