@@ -32,3 +32,6 @@ hs_err_pid*
 LeetCodeTest.iml
 out/production/LeetCodeTest/leetcode/editor/cn/all.json
 out/production/LeetCodeTest/leetcode/editor/cn/translation.json
+.gitignore
+*.json
+*.iml
