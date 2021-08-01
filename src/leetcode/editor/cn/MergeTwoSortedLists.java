@@ -44,7 +44,7 @@ class MergeTwoSortedLists {
  * }
  */
 class Solution {
-    public ListNode mergeTwoLists2(ListNode l1, ListNode l2) {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         //非递归实现
         ListNode head = new ListNode(0);
         ListNode first = head;
@@ -84,9 +84,10 @@ class Solution {
         return res;
     }
     //新建链表非递归实现
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        ListNode newHead = new ListNode();
-        ListNode temp = newHead;
+    public ListNode mergeTwoLists2(ListNode l1, ListNode l2) {
+        ListNode temp = new ListNode(0);
+        ListNode newHead = temp;
+
         while (l1!=null && l2!=null){
             if(l1.val<l2.val){
                 newHead.val=l1.val;
@@ -107,7 +108,7 @@ class Solution {
         if(l2 != null){
             newHead.val = l2.val;
         }
-        return temp;
+        return temp.next;
     }
 }
 
