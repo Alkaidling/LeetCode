@@ -38,3 +38,4 @@ out/production/LeetCodeTest/leetcode/editor/cn/translation.json
 *.md
 *.txt
 src/leetcode/editor/cn/ValidParentheses201324305.txt
+src/leetcode/editor/cn/doc/*
