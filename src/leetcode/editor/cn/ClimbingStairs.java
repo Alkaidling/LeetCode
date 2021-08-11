@@ -13,7 +13,7 @@ class ClimbingStairs {
 class Solution {
     public int climbStairs(int n) {
         //dp数组中dp[i]则为第i层的结果，此时默认dp[0]=0
-        int[] dp = new int[n+2];
+        int[] dp = new int[n+1];
         dp[1] = 1;
         dp[2] = 2;
         for (int i = 3; i <= n; i++) {
