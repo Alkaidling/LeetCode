@@ -40,7 +40,7 @@ class RemoveDuplicatesFromSortedList {
 
             ListNode cur = head;
             while (cur.next != null) {
-                if (cur.val == cur.next.val) {
+                if (cur.val == cur.next.val) {//删除所有相同元素，再将cur指针下移，避免了多个重复元素只删除了第二个
                     cur.next = cur.next.next;
                 } else {
                     cur = cur.next;
