@@ -17,6 +17,7 @@ class BestTimeToBuyAndSellStock {
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
+        //O(n)
         public int maxProfit(int[] prices) {
             int min = Integer.MAX_VALUE;
             int result = 0;
@@ -29,6 +30,7 @@ class Solution {
             return result;
         }
 
+        //O(n)
         public int maxProfit1(int[] prices) {
             int[] dp = new int[prices.length];
             //求出后一天减前一天的差，存入数组dp，即隔一天卖出的利润
@@ -47,6 +49,7 @@ class Solution {
             return result;
         }
 
+        //O(n²)
     public int maxProfit2(int[] prices) {
         int result = 0;
         for (int i = 1; i < prices.length; i++) {
