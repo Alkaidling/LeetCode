@@ -21,7 +21,7 @@ class Solution {
     Deque<Integer> stack = new ArrayDeque<Integer>();
 
     public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-        stack.offerLast(0);
+        stack.offerLast(0);  //尾插尾取，将stack的结果add到list中，保证栈中顺序与结果的顺序相同
         dfs(graph, 0, graph.length - 1);
         return lists;
     }
