@@ -8,6 +8,8 @@ class CheapestFlightsWithinKStops {
         Solution solution = new CheapestFlightsWithinKStops().new Solution();
         int[][] flights = {{0,1,100},{1,2,100},{0,2,500}};
         int n = 3;
+        int cheapestPrice = solution.findCheapestPrice(3, flights, 0, 2, 1);
+        System.out.println(cheapestPrice);
 
 
 /*        int[][] A = new int[n][n];
