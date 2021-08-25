@@ -38,7 +38,7 @@ class Solution {
             stack.pollLast();
         }
     }
-    }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
