@@ -38,7 +38,7 @@ class Solution {
         //        --d;
         //    }
         //    if (d == 0) {
-        //        --index;
+        //        ++index;
         //    }
         //}
 
