@@ -29,10 +29,10 @@ class Solution {
             arr[i][0] = capital[i];
             arr[i][1] = profits[i];
         }
-        Arrays.sort(arr,(a,b) -> a[0] - b[0]);//按照第一列即capital的大小排序
+        Arrays.sort(arr,(a,b) -> a[0] - b[0]); //按照第一列即capital的从小到大排序
         PriorityQueue<Integer> queue = new PriorityQueue<>((a, b) -> b - a);//大根堆，从大到小排列
         for (int i = 0; i < k; i++) {
-            while (curr < n && arr[curr][0] <= w) {  //所需资本小于w的项目
+            while (curr < n && arr[curr][0] <= w) {  //所需资本小于w的所有项目
                 queue.add(arr[curr][1]);  //将这些项目的利润都添加到堆中
                 ++curr;
             }
