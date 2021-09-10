@@ -50,7 +50,7 @@ class Solution {
         while (nEnd >= nStart && mEnd >= mStart) {
             int nMid = (nEnd-nStart)/2 + nStart;  //中间行
             int mMid = (mEnd-mStart)/2 + mStart;  //中间列
-            //因为查找中间位置右上时包含了中间值所在的行和列，所有会有起始、结束、中间三个位置相等的情况，则直接比较目标值与该位置的值
+            //因为查找中间位置的右上方时 包含了中间值所在的行和列，所有会有起始、结束、中间三个位置相等的情况，则直接比较目标值与该位置的值
             if(nMid == nStart && nMid == nEnd && mMid == mStart && mMid == mEnd){
                 return target == matrix[nMid][mMid];
             }
