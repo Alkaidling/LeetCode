@@ -13,7 +13,7 @@ class Solution {
         for (String word : words) {
 
         }
-
+        return null;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
