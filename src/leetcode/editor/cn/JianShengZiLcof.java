@@ -26,13 +26,7 @@ class Solution {
         //    n -= 3;
         //    ans *= 3;
         //}
-        //if (n == 4) {
-        //    ans *= 4;
-        //} else if (n == 3) {
-        //    ans *= 3;
-        //} else if (n == 2) {
-        //    ans *= 2;
-        //}
+        //ans *= n;
         //return ans;
 
         int a = n / 3, b = n % 3;
