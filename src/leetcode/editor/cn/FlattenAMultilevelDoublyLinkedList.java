@@ -77,6 +77,32 @@ class Solution {
             }
         }
     }
+
+    //不借助栈实现递归操作
+    Node dfs1(Node head) {
+        Node last = head;
+        while (head != null) {
+            if (head.child == null) {
+                last = head;
+                head = head.next;
+            } else {
+                Node tmp = head.next;
+                Node childLast = dfs1(head.child);  //childLast为扁平化最后一个节点，并将head.next连到它后面
+                head.next = head.child;
+                head.child.prev = head;
+                head.child = null;
+                if (childLast != null) {
+                    childLast.next = tmp;
+                }
+                if (tmp != null) {
+                    tmp.prev = childLast;
+                }
+                last = head;
+                head = childLast;
+            }
+        }
+        return last;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 class Node{
