@@ -14,11 +14,26 @@ import org.omg.CORBA.MARSHAL;
 public class NQueen {
     public static void main(String[] args) {
         Solution solution = new NQueen().new Solution();
+        Solution2 solution2 = new NQueen().new Solution2();
+        int n = 8;
+        int limit = n == 32 ? -1 : (1 << n) - 1;
+        System.out.println(limit);
+
         long start = System.currentTimeMillis();
         int i = solution.nQueen(8);
         long end = System.currentTimeMillis();
-        System.out.println(i);
-        System.out.println(end - start);
+
+        System.out.println("s1(n="+ n + "):  " + i);
+        System.out.println(end - start + "ms");
+
+        System.out.println();
+
+        start = System.currentTimeMillis();
+        i = solution2.nQueen(8);
+        end = System.currentTimeMillis();
+
+        System.out.println("s2(n=" + n + "):  " + i);
+        System.out.println(end - start + "ms");
     }
 
 
@@ -54,6 +69,41 @@ class Solution{
             }
         }
         return true;
+    }
+}
+
+
+class Solution2{
+    public int nQueen(int n) {
+        if (n < 0 || n > 32) {
+            return 0;
+        }
+        //limit的值二进制为 右边n个1，左边补满0。
+        //例如n=8时 limit=(0000 0000 0000 0000 0000 0000 1111 1111)2
+        int limit = n == 32 ? -1 : (1 << n) - 1;
+        return process(limit,0,0,0);
+    }
+    //limit的二进制位上的1即为已经放的皇后，cloLim的1位 该列不能放，leftDiaLim、rightDiaLim的1为该位置 左边和右边成斜线的位置
+    private int process(int limit,int cloLim, int leftDiaLim, int rightDiaLim){
+        if (cloLim == limit) { //若相等 则列限制的所有位都为1，即放满了。
+            return 1;
+        }
+        int pos = 0;
+        int mostRightOne = 0;
+        //将列限制，斜线限制求 或 运算即为全部限制。
+        //再取 反 在 与 limit即为可以放的位置（pos二进制的1即为可以放的位置）
+        pos = limit & (~(cloLim | leftDiaLim | rightDiaLim));
+        int res = 0;
+        while (pos != 0) {
+            mostRightOne = pos & (~pos + 1); //mostRightOne即为pos最右侧的1
+            pos = pos - mostRightOne;  //若pos==0，即为所有可放的位置计算完毕。
+            //下一行可放的位置为：
+            // 之前的列限制与上 mostRightOne，即为下一行的列限制。
+            // 之前的左斜线的限制与上 mostRightOne 左移一位即为下一行的左斜线限制。
+            // 之前的右斜线的限制与上 mostRightOne 右移一位即为下一行的左斜线限制。
+            res += process(limit,cloLim | mostRightOne,(leftDiaLim | mostRightOne) << 1,(rightDiaLim | mostRightOne) >>> 1);
+        }
+        return res;
     }
 }
 }
