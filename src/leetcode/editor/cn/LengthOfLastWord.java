@@ -34,18 +34,18 @@ class Solution {
     }
 
         //返回最大单词长度
-    //public int lengthOfLastWord(String s) {
-    //    int temp = 0,result = 0;
-    //    for (int i = 0; i < s.length(); i++) {
-    //        if(s.charAt(i) != ' '){
-    //            temp++;
-    //            if(temp > result)
-    //                result = temp;
-    //        }else if(s.charAt(i) == ' ' )
-    //            temp = 0;
-    //    }
-    //    return result;
-    //}
+    public int lengthOfLastWord1(String s) {
+        int temp = 0,result = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if(s.charAt(i) != ' '){
+                temp++;
+                if(temp > result)
+                    result = temp;
+            }else if(s.charAt(i) == ' ' )
+                temp = 0;
+        }
+        return result;
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
