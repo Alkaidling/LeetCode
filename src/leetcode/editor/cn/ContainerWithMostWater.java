@@ -13,7 +13,7 @@ class ContainerWithMostWater {
     class Solution {
 
         //假定全范围为最大值，头尾双指针缩小范围
-        //执行耗时:4 ms,击败了70.67% 的Java用户 内存消耗:51.9 MB,击败了41.53% 的Java用户
+        //执行耗时:4 ms,击败了70.67% 的Java用户 内存消耗:51.8 MB,击败了55.56% 的Java用户
         public int maxArea(int[] height) {
             int n = height.length;
             int start = 0;
@@ -33,21 +33,21 @@ class ContainerWithMostWater {
         }
 
         //Time Limit Exceeded  O(n²)
-        public int maxArea1(int[] height) {
-            int len = height.length;
-            int start = 0;
-            int end = 0;
-            int ans = 0;
-            for (; start < len; start++) {
-                end = start;
-                while (end < len) {
-                    int area = (end - start) * Math.min(height[end], height[start]);
-                    ans = Math.max(ans, area);
-                    end++;
-                }
-            }
-            return ans;
-        }
+        //public int maxArea1(int[] height) {
+        //    int len = height.length;
+        //    int start = 0;
+        //    int end = 0;
+        //    int ans = 0;
+        //    for (; start < len; start++) {
+        //        end = start;
+        //        while (end < len) {
+        //            int area = (end - start) * Math.min(height[end], height[start]);
+        //            ans = Math.max(ans, area);
+        //            end++;
+        //        }
+        //    }
+        //    return ans;
+        //}
     }
 //leetcode submit region end(Prohibit modification and deletion)
 
