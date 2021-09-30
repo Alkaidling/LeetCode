@@ -39,12 +39,7 @@ class RemoveNthNodeFromEndOfList {
             if (count == n) {
                 return head.next;
             }
-            //删除的是中间节点
-            if (curr.next.next != null) {
-                curr.next = curr.next.next;
-            }else{ //删除的是尾节点
-                curr.next = null;
-            }
+            curr.next = curr.next.next;
             return head;
         }
     }
