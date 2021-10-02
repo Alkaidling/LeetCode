@@ -12,17 +12,16 @@ class Solution {
         if (num == 0) {
             return "0";
         }
-        long div;
         StringBuilder builder = new StringBuilder();
         long value = (long)(Integer.MAX_VALUE) * 2 + 2;  // 1 << 32
-        long res = 0;
+        long res;
         if (num < 0) {
             res = value + num;
         }else {
             res = num;
         }
         while (res != 0){
-            div = res % 16;
+            long div = res % 16;
             res = res / 16;
             char digit = div < 10 ? (char) ('0' + div) : (char) ('a' + div - 10);  //替代switch-case
             builder.append(digit);
