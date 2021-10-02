@@ -1,6 +1,6 @@
 package leetcode.editor.cn;
 
-//Java：162、寻找峰值
+//Java：162、寻找峰值  (上坡必有坡顶)
 class FindPeakElement {
     public static void main(String[] args) {
         Solution solution = new FindPeakElement().new Solution();
