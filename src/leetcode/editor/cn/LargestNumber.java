@@ -20,7 +20,6 @@ class LargestNumber {
             String[] strings = new String[n];
             for (int i = 0; i < n; i++) {
                 strings[i] = new StringBuilder(String.valueOf(nums[i])).reverse().toString();
-                ;
             }
             StringBuilder builder = new StringBuilder();
             Arrays.sort(strings);
