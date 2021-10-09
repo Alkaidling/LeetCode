@@ -20,7 +20,7 @@ class JumpGame {
                 if (rightmost < i) {
                     return false;  //到不了i位置则一定到不了最后
                 }
-                rightmost = Math.max(rightmost, i + nums[i]);
+                rightmost = Math.max(rightmost, i + nums[i]); //到了i位置，看从i位置是否可以跳的更远
             }
             return true;
         }
