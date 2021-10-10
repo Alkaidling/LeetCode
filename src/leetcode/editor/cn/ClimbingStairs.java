@@ -11,7 +11,10 @@ class ClimbingStairs {
     }
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int climbStairs(int n) {
+    public int climbStairs1(int n) {
+        if (n == 1) {
+            return 1;
+        }
         //dp数组中dp[i]则为第i层的结果，此时默认dp[0]=0
         int[] dp = new int[n+1];
         dp[1] = 1;
@@ -21,7 +24,7 @@ class Solution {
         }
         return dp[n];
     }
-    public int climbStairs1(int n) {
+    public int climbStairs(int n) {
         //f(n) = f(n-1) + f(n-2)
         //n-2层：x   n-1层：y   n层：result = x + y
         int x = 0,y = 0,result = 1;
