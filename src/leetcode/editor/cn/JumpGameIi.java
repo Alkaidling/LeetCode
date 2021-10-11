@@ -29,16 +29,15 @@ class JumpGameIi {
         }
 
         //双指针 + 贪心 + 动态规划  O(n) O(n)
-        //状态转移方程：f[i] = f[j] + 1
-        //每次都贪心的取离 i 点最远的点 j 来更新 f[i]
+        //每次都贪心的取离 i 点最远的点 j 来更新 f[i] 保证跳的步数最少
         public int jump3(int[] nums) {
             int n = nums.length;
             int[] f = new int[n];
             for (int i = 1, j = 0; i < n; i++) {
-                while (j + nums[j] < i) {
+                while (j + nums[j] < i) { //如果j位置到不了i位置则选j的后一个位置
                     j++;
                 }
-                f[i] = f[j] + 1;
+                f[i] = f[j] + 1;   //状态转移方程：f[i] = f[j] + 1 (若能从j位置跳到i)
             }
             return f[n - 1];
         }
