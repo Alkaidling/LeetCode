@@ -10,8 +10,8 @@ class WordBreak {
     public static void main(String[] args) {
         Solution solution = new WordBreak().new Solution();
         String s = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
-        List<String> wordDict = Arrays.asList("a","aa","aaa","aaaa","aaaaa","aaaaaa","aaaaaaa","aaaaaaaa","aaaaaaaaa","aaaaaaaaaa");
-        boolean b = solution.wordBreak(s, wordDict);
+        List<String> wordDict = Arrays.asList("a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa", "aaaaaaaaaa");
+        boolean b = solution.wordBreak1(s, wordDict);
         System.out.println(b);
     }
 
@@ -26,7 +26,7 @@ class WordBreak {
             dp[0] = true;
             for (int i = 1; i <= s.length(); i++) {
                 for (int j = 0; j < i; j++) {
-                    if(dp[j] && wordDictSet.contains(s.substring(j,i))){  //dp[i]= dp[j] && check(s[j..i−1])  (dp[j]:0到j合法，check(s[j..i−1]):检查j到i-1是否合法 )
+                    if (dp[j] && wordDictSet.contains(s.substring(j, i))) {  //dp[i]= dp[j] && check(s[j..i−1])  (dp[j]:0到j合法，check(s[j..i−1]):检查j到i-1是否合法 )
                         dp[i] = true;
                         break;
                     }
@@ -36,26 +36,33 @@ class WordBreak {
         }
 
 
-        //dfs: Time Limit Exceeded
+        //记忆化递归
         public boolean wordBreak1(String s, List<String> wordDict) {
-            return dfs1(s, wordDict, 0);
+            Set<String> wordDictSet = new HashSet(wordDict);
+            int[] memory = new int[s.length()];
+            return dfs(s, wordDictSet, 0, memory);
         }
 
-        private boolean dfs1(String s, List<String> wordDict, int start) {
+        private boolean dfs(String s, Set<String> wordDictSet, int start, int[] memory) {
             int n = s.length();
             if (start == n) {
                 return true;
             }
+            if(memory[start] != 0){
+                return memory[start] == 1 ? true : false;
+            }
             boolean res = false;
             for (int i = start + 1; i <= n; i++) {
                 String substr = s.substring(start, i);
-                if (wordDict.contains(substr)) {
-                    res = dfs1(s, wordDict, i);
+                if (wordDictSet.contains(substr)) {
+                    res = dfs(s, wordDictSet, i,memory);
                 }
                 if (res) {
+                    memory[start] = 1;
                     return true;
                 }
             }
+            memory[start] = 2;
             return res;
         }
     }
