@@ -36,7 +36,7 @@ class WordBreak {
         }
 
 
-        //记忆化递归
+        //记忆化回溯
         public boolean wordBreak1(String s, List<String> wordDict) {
             Set<String> wordDictSet = new HashSet(wordDict);
             int[] memory = new int[s.length()];
