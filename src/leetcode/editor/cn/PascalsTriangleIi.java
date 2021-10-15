@@ -7,12 +7,16 @@ import java.util.List;
 class PascalsTriangleIi {
     public static void main(String[] args) {
         Solution solution = new PascalsTriangleIi().new Solution();
+        List<Integer> row2 = solution.getRow2(5);
+        System.out.println(row2);
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+    class Solution {
+
         //线性递推 时间O(rowIndex)。空间O(1)
         public List<Integer> getRow2(int rowIndex) {
-            List<Integer> row = new ArrayList<Integer>();
+            List<Integer> row = new ArrayList<>();
             row.add(1);
             for (int i = 1; i <= rowIndex; ++i) {
                 row.add((int) ((long) row.get(i - 1) * (rowIndex - i + 1) / i));
@@ -37,25 +41,25 @@ class Solution {
         }
 
         //时间O(rowIndex²)。空间O(1)
-    public List<Integer> getRow(int rowIndex) {
-        rowIndex++;
-        ArrayList<List<Integer>> list = new ArrayList<>();
-        for (int i = 0; i < rowIndex; i++) {
-            ArrayList<Integer> inner = new ArrayList<>();
-            inner.add(0,1);
+        public List<Integer> getRow(int rowIndex) {
+            rowIndex++;
+            ArrayList<List<Integer>> list = new ArrayList<>();
+            for (int i = 0; i < rowIndex; i++) {
+                ArrayList<Integer> inner = new ArrayList<>();
+                inner.add(0, 1);
 
-            for (int j = 1; j < i; j++) {
-                inner.add(j,list.get(i-1).get(j-1)+list.get(i-1).get(j));
+                for (int j = 1; j < i; j++) {
+                    inner.add(j, list.get(i - 1).get(j - 1) + list.get(i - 1).get(j));
+                }
+
+                if (i > 0)
+                    inner.add(i, 1);
+                list.add(inner);
             }
-
-            if(i>0)
-                inner.add(i,1);
-            list.add(inner);
+            List<Integer> resultList = list.get(rowIndex - 1);
+            return resultList;
         }
-        List<Integer> resultList = list.get(rowIndex-1);
-        return resultList;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
