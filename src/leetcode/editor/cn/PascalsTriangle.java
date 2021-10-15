@@ -1,6 +1,7 @@
 package leetcode.editor.cn;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 //Java：118、杨辉三角
@@ -16,25 +17,25 @@ class PascalsTriangle {
         }
 
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public List<List<Integer>> generate(int numRows) {
-        ArrayList<List<Integer>> list = new ArrayList<>();
-        for (int i = 0; i < numRows; i++) {
-            ArrayList<Integer> inner = new ArrayList<>();
-            inner.add(0,1);
+    class Solution {
 
-            for (int j = 1; j < i; j++) {
-                inner.add(j,list.get(i-1).get(j-1)+list.get(i-1).get(j));
+        public List<List<Integer>> generate(int numRows) {
+            ArrayList<List<Integer>> list = new ArrayList<>();
+            list.add(Arrays.asList(1));
+            for (int i = 1; i < numRows; i++) {
+                ArrayList<Integer> rowList = new ArrayList<>();
+                rowList.add(1);
+                for (int j = 1; j < i; j++) {
+                    rowList.add(list.get(i-1).get(j-1) + list.get(i-1).get(j));
+                }
+                rowList.add(1);
+                list.add(rowList);
             }
-
-            if(i>0)
-                inner.add(i,1);
-            list.add(inner);
+            return list;
         }
-        return list;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
