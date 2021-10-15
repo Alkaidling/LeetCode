@@ -26,8 +26,8 @@ class PascalsTriangleIi {
 
         //线性规划  时间O(rowIndex²)。空间O(1)
         //只使用一个数组
-        //当前行第 ii 项的计算只与上一行第 i-1i−1 项及第 ii 项有关。
-        //因此我们可以倒着计算当前行，这样计算到第 ii 项时，第 i-1i−1 项仍然是上一行的值。
+        //当前行第 i 项的计算只与上一行第 i-1 项及第 i 项有关。
+        //因此我们可以倒着计算当前行，这样计算到第 i 项时，第 i−1 项仍然是上一行的值。
         public List<Integer> getRow1(int rowIndex) {
             List<Integer> row = new ArrayList<Integer>();
             row.add(1);
