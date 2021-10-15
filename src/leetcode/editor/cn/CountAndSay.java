@@ -41,7 +41,7 @@ class CountAndSay {
             return preStr;
         }
 
-        //dfs
+        //递归
         //执行耗时:1 ms,击败了98.09% 的Java用户 内存消耗:36.3 MB,击败了35.44% 的Java用户
         public String countAndSay1(int n) {
             return dfs("1", 1, n);
