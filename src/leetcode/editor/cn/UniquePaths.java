@@ -4,14 +4,28 @@ package leetcode.editor.cn;
 class UniquePaths {
     public static void main(String[] args) {
         Solution solution = new UniquePaths().new Solution();
-        int i = solution.uniquePaths(17, 17);
+        int i = solution.uniquePaths(3, 7);
         System.out.println(i);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        //O(m*n)  O(m*n)
+        //O(m*n)  O(n) 只用一行存储
         public int uniquePaths(int m, int n) {
+            int[] dp = new int[n];
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (i == 0 || j == 0) {
+                        dp[j] = 1;
+                    }else {
+                        dp[j] += dp[j-1];
+                    }
+                }
+            }
+            return dp[n-1];
+        }
+        //O(m*n)  O(m*n)
+        public int uniquePaths1(int m, int n) {
             int[][] dp = new int[m][n];
             for (int i = 0; i < n; i++) {
                 dp[0][i] = 1;
