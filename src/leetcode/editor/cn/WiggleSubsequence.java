@@ -56,7 +56,7 @@ class WiggleSubsequence {
                 return 1;
             }
             int max = 2;  //nums所有元素不全相等的情况下最小长度为2
-            int temp = 1;
+            int temp = 2;
             int cur = nums[1] - nums[0], pre;
             for (int i = 1; i < n - 1; i++) {
                 if (nums[i + 1] - nums[i] == 0) {
@@ -69,7 +69,7 @@ class WiggleSubsequence {
                     max++;
                 }
             }
-            return temp == n - 1 ? 1 : max;
+            return temp == n ? 1 : max;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
