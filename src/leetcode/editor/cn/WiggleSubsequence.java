@@ -55,21 +55,21 @@ class WiggleSubsequence {
             if (n == 1) {
                 return 1;
             }
-            int max = 2;  //nums所有元素不全相等的情况下最小长度为2
-            int temp = 2;
+            int len = 2;  //nums所有元素不全相等的情况下最小长度为2
+            int divNum = 0;
             int cur = nums[1] - nums[0], pre;
             for (int i = 1; i < n - 1; i++) {
                 if (nums[i + 1] - nums[i] == 0) {
-                    temp++;
+                    divNum++;  //divNum=n-2时（n个数有n-2个差值）这n-2个差值均为0，也即所有数均相等
                     continue;
                 }
                 pre = cur;
                 cur = nums[i + 1] - nums[i];
-                if (cur * pre < 0) {
-                    max++;
+                if (cur * pre < 0) {  //nums中i+1，i，i-i形成摆动数组
+                    len++;
                 }
             }
-            return temp == n ? 1 : max;
+            return divNum == n - 2 ? 1 : len;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
