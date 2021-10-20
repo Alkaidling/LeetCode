@@ -13,7 +13,7 @@ class CoinChange2 {
         public int change(int amount, int[] coins) {
             int[] dp = new int[amount+1];  //dp[i]为总金额为i时的方法数
             dp[0] = 1;
-            for (int coin : coins) {
+            for (int coin : coins) {  //两层循环不能交换顺序
                 for (int i = coin; i <= amount; i++) {
                     dp[i] += dp[i-coin];
                 }
