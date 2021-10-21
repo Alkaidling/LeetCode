@@ -12,23 +12,23 @@ class IntegerBreak {
     class Solution {
         //贪心
         public int integerBreak(int n) {
-            if (n < 4){
+            if (n < 4) {
                 return n - 1;
             }
             int a = n / 3;
             int b = n % 3;
             if (b == 0) {
-                return (int) Math.pow(3,a);
+                return (int) Math.pow(3, a);
             } else if (b == 1) {
-                return (int) (Math.pow(3,a-1)*4);
-            } else{
-                return (int) (Math.pow(3,a)*2);
+                return (int) (Math.pow(3, a - 1) * 4);
+            } else {
+                return (int) (Math.pow(3, a) * 2);
             }
         }
 
         //O(n²) O(n)
         public int integerBreak0(int n) {
-            if (n < 4){
+            if (n < 4) {
                 return n - 1;
             }
             int[] dp = new int[n + 1];
