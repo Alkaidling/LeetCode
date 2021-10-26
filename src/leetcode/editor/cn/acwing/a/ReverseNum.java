@@ -14,7 +14,6 @@ import java.io.InputStreamReader;
  */
 
 public class ReverseNum {
-    static long res = 0;
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(reader.readLine());
@@ -23,17 +22,16 @@ public class ReverseNum {
         for (int i = 0; i < n; i++) {
             nums[i] = Integer.parseInt(str[i]);
         }
-        mergeSort(nums,0,n-1);
+        int res = mergeSort(nums,0,n-1);
         System.out.print(res);
     }
 
-    private static void mergeSort(int[] nums, int left, int right) {
+    private static int mergeSort(int[] nums, int left, int right) {
         if (left >= right) {
-            return;
+            return 0;
         }
         int mid = left + (right - left) / 2;
-        mergeSort(nums, left, mid);
-        mergeSort(nums, mid + 1, right);
+        int res = mergeSort(nums, left, mid) + mergeSort(nums, mid + 1, right);
         int k = 0, i = left, j = mid + 1;
         int[] temp = new int[right - left + 1];
         while (i <= mid && j <= right) {
@@ -53,5 +51,6 @@ public class ReverseNum {
         for (i = left,j = 0; i <= right; i++,j++) {
             nums[i] = temp[j];
         }
+        return res;
     }
 }
