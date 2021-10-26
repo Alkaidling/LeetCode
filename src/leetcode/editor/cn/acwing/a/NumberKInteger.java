@@ -26,6 +26,35 @@ public class NumberKInteger {
         }
         quickSort(nums, 0, n - 1);
         System.out.print(nums[k - 1]);
+        System.out.println(quickSort(nums,0, n-1, k-1));
+
+    }
+
+    static int N = 100010;
+
+    public static int quickSort(int[] nums,int l, int r, int k){
+        if(l >= r) {
+            return nums[k];
+        }
+
+        int x = nums[l], i = l-1, j = r+1;
+        while(i < j) {
+            do {
+                i++;
+            } while(nums[i] < x);
+            do {
+                j--;
+            } while(nums[j] > x);
+            if(i < j) {
+                swap(nums, i, j);
+            }
+        }
+
+        if(k <= j) {
+            return quickSort(nums,l, j, k);
+        } else {
+            return quickSort(nums,j+1, r, k);
+        }
     }
 
     public static void quickSort(int[] nums, int left, int right) {
