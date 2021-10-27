@@ -7,7 +7,7 @@ class KthLargestElementInAnArray {
     public static void main(String[] args) {
         Solution solution = new KthLargestElementInAnArray().new Solution();
         int[] nums = {3,2,3,1,2,4,5,5,6};
-        int kthLargest = solution.findKthLargest(nums, 2);
+        int kthLargest = solution.findKthLargest(nums, 4);
         System.out.println(kthLargest);
     }
 
@@ -17,7 +17,7 @@ class KthLargestElementInAnArray {
         public int findKthLargest(int[] nums, int k) {
             return quickSelect(nums,0,nums.length-1,k-1);
         }
-        //快速选择(快排)
+        //快速选择(快排模板)
         private int quickSelect(int[] nums, int left, int right, int k) {
             if (left >= right) {
                 return nums[left];
@@ -39,7 +39,7 @@ class KthLargestElementInAnArray {
                     swap(nums,i,j);
                 }
             }
-            if (k > j) {
+            if (k > j) { //此时数组中前j个数都大于(或等于)后面的数，如果k大于j，则在j后面部分继续寻找
                 return quickSelect(nums,j+1,right,k);
             }else {
                 return quickSelect(nums,left,j,k);
