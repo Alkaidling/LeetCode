@@ -13,6 +13,7 @@ class KthLargestElementInAnArray {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        Random random = new Random();
         public int findKthLargest(int[] nums, int k) {
             return quickSelect(nums,0,nums.length-1,k-1);
         }
@@ -22,8 +23,8 @@ class KthLargestElementInAnArray {
                 return nums[left];
             }
             //每次随机取样
-            int random = new Random().nextInt(right - left + 1) + left;
-            swap(nums,left,random);
+            int randomIndex = random.nextInt(right - left + 1) + left;
+            swap(nums,left,randomIndex);
             int x = nums[left];
             int i = left - 1;
             int j = right + 1;
