@@ -49,7 +49,7 @@ public class SlideWindow {
             // 删除 deque 中对应的 nums[i-1]
             if(i > 0 && deque.peekFirst() == nums[i - 1])
                 deque.removeFirst();
-            // 保持 deque 递减
+            // 保持 deque 递减 ，严格递减
             while(!deque.isEmpty() && deque.peekLast() < nums[j]){
                 deque.removeLast();
             }
