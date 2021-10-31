@@ -49,9 +49,8 @@ public class UnionFindTest {
         private int[] parent;
         private int[] rank;
 
-        public UnionFind(int[] nums) {
+        public UnionFind(int n) {
             count = 0;
-            int n = nums.length;
             parent = new int[n];
             rank = new int[n];
             for (int i = 0; i < n; i++) {
