@@ -8,7 +8,7 @@ class LongestArithmeticSubsequenceOfGivenDifference {
     public static void main(String[] args) {
         Solution solution = new LongestArithmeticSubsequenceOfGivenDifference().new Solution();
         int[] arr = {1, 5, 7, 8, 5, 3, 4, 2, 1};
-        int i = solution.longestSubsequence1(arr, -2);
+        int i = solution.longestSubsequence(arr, -2);
         System.out.println(i);
     }
 
@@ -20,9 +20,8 @@ class LongestArithmeticSubsequenceOfGivenDifference {
             int dp[] = new int[40001];
             int max = 0;
             for (int x : arr) {
-                int i = dp[x - difference + 20000] + 1;
-                dp[x + 20000] = i;
-                max = Math.max(max, i);
+                dp[x + 20000] = dp[x - difference + 20000] + 1;
+                max = Math.max(max, dp[x + 20000]);
             }
             return max;
         }
