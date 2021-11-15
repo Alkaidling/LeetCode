@@ -102,7 +102,7 @@ class RemoveDuplicatesFromSortedList {
 class ListNode {
     int val;
     ListNode next;
-    ListNode(int val, MergeTwoSortedLists.ListNode listNode) {}
+    ListNode() {}
     ListNode(int val) {
         this.val = val;
     }
