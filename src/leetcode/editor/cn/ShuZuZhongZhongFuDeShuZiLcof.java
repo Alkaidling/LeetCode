@@ -1,6 +1,5 @@
 package leetcode.editor.cn;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -8,20 +7,46 @@ import java.util.HashSet;
 class ShuZuZhongZhongFuDeShuZiLcof {
     public static void main(String[] args) {
         Solution solution = new ShuZuZhongZhongFuDeShuZiLcof().new Solution();
-        int[] nums = {2,3,1,0,2,5,3};
+        int[] nums = {3, 4, 2, 0, 0, 1};
         //int[] nums = {1,1};
         int repeatNumber = solution.findRepeatNumber(nums);
         System.out.println(repeatNumber);
 
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+    class Solution {
+
+        //排序
+        public int findRepeatNumber11(int[] nums) {
+            Arrays.sort(nums);
+            int n = nums.length;
+            for (int i = 1; i < n; i++) {
+                if (nums[i] == nums[i - 1]) {
+                    return nums[i];
+                }
+            }
+            return nums[0];
+        }
+
+        //哈希表
+        public int findRepeatNumber00(int[] nums) {
+            int n = nums.length;
+            HashSet<Integer> set = new HashSet<>();
+            for (int i = 0; i < n; i++) {
+                if (set.contains(nums[i])) {
+                    return nums[i];
+                }
+                set.add(nums[i]);
+            }
+            return nums[0];
+        }
 
         //⭐⭐⭐重排数组，对比下标和数字是否相等，相等则返回，不等则交换，时间O(n) 空间O(1)
         public int findRepeatNumber(int[] nums) {
             for (int i = 0; i < nums.length; i++) {
                 while (nums[i] != i) {  //两重循环，但每个数字最多只交换两次，所以时间O(n)
-                    if(nums[i] == nums[nums[i]]){
+                    if (nums[i] == nums[nums[i]]) {
                         return nums[i];
                     }
                     int temp = nums[i];
@@ -38,27 +63,28 @@ class Solution {
             int start = 0;
             int end = nums.length - 1;
             while (start <= end) {
-                int mid = ((end - start)/2) + start;
-                int count = countRange(nums,start,mid); //调用logn次，每次O(n)
-                if(end == start){
-                    if(count > 1){
+                int mid = ((end - start) / 2) + start;
+                int count = countRange(nums, start, mid); //调用logn次，每次O(n)
+                if (end == start) {
+                    if (count > 1) {
                         return start;
-                    }else{
+                    } else {
                         break;
                     }
                 }
-                if(count > (mid - start + 1)){
+                if (count > (mid - start + 1)) {
                     end = mid - 1;
-                }else{
+                } else {
                     start = mid + 1;
                 }
             }
             return -1;
         }
+
         private int countRange(int[] nums, int start, int end) { //在start到end范围内，值也在这个范围中出现的次数
             int count = 0;
             for (int i = 0; i < nums.length; i++) {
-                if(nums[i] >= start && nums[i] <= end){
+                if (nums[i] >= start && nums[i] <= end) {
                     ++count;
                 }
             }
@@ -70,7 +96,7 @@ class Solution {
         public int findRepeatNumber3(int[] nums) {
             Arrays.sort(nums);
             for (int i = 0; i < nums.length; i++) {
-                if(nums[i] == nums[i+1]){
+                if (nums[i] == nums[i + 1]) {
                     return nums[i];
                 }
             }
@@ -81,28 +107,29 @@ class Solution {
         public int findRepeatNumber2(int[] nums) {
             HashSet<Integer> set = new HashSet<>();
             for (int i = 0; i < nums.length; i++) {
-                if(!set.contains(nums[i])){ //HashSet的contains方法是用hashcode查找，所以不用ArrayList
+                if (!set.contains(nums[i])) { //HashSet的contains方法是用hashcode查找，所以不用ArrayList
                     set.add(nums[i]);
-                }else{
+                } else {
                     return nums[i];
                 }
             }
             return -1;
         }
-    //双重for循环找重复数字,时间O(n²) 空间O(1)
-    public int findRepeatNumber1(int[] nums) {
-        int p = nums[0];
-        for (int i = 1; i < nums.length; i++) {
-            for (int j = i; j < nums.length; j++) {
-                if(p == nums[j]){
-                    return p;
+
+        //双重for循环找重复数字,时间O(n²) 空间O(1)
+        public int findRepeatNumber1(int[] nums) {
+            int p = nums[0];
+            for (int i = 1; i < nums.length; i++) {
+                for (int j = i; j < nums.length; j++) {
+                    if (p == nums[j]) {
+                        return p;
+                    }
                 }
+                p = nums[i];
             }
-            p = nums[i];
+            return -1;
         }
-        return -1;
     }
-}
 
 
 //leetcode submit region end(Prohibit modification and deletion)
