@@ -33,11 +33,11 @@ class Node {
             if (root == null) {
                 return 0;
             }
-            int res = 1;
+            int res = 0;
             for (Node child : root.children) {
-                res = Math.max(maxDepth(child) + 1, res);
+                res = Math.max(maxDepth(child), res);
             }
-            return res;
+            return res + 1;
         }
     }
 
