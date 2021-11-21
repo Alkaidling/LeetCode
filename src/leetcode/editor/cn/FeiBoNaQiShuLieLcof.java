@@ -1,4 +1,5 @@
 package leetcode.editor.cn;
+
 //Java：剑指 Offer 10- I、斐波那契数列
 class FeiBoNaQiShuLieLcof {
     public static void main(String[] args) {
@@ -9,30 +10,46 @@ class FeiBoNaQiShuLieLcof {
         System.out.println(fib);
         System.out.println(end - start);
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
+    class Solution {
 
-    static final int MOD = 1000000007;
+        static final int MOD = 1000000007;
 
-    public int fib(int n) {
-        if(n < 2)
-            return n;
-
-        int pre = 0;
-        int next = 1;
-        int result = 0;
-
-        for (int i = 2; i <= n; i++) {  //时间复杂度 O(n)
-            result = (pre + next) % MOD;
-            pre = next;
-            next = result;
+        public int fib(int n) {
+            if (n < 2) {
+                return n;
+            }
+            int preNum = 1;
+            int prePre = 0;
+            int res = 0;
+            for (int i = 2; i <= n; i++) {
+                res = (preNum + prePre) % MOD;
+                prePre = preNum;
+                preNum = res;
+            }
+            return res;
         }
 
-        return result;
+        public int fib0(int n) {
+            if (n < 2)
+                return n;
 
-        //return (fib(n-1) + fib(n - 2)) % 1000000007;
+            int pre = 0;
+            int next = 1;
+            int result = 0;
+
+            for (int i = 2; i <= n; i++) {  //时间复杂度 O(n)
+                result = (pre + next) % MOD;
+                pre = next;
+                next = result;
+            }
+
+            return result;
+
+            //return (fib(n-1) + fib(n - 2)) % 1000000007;
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
     //矩阵快速幂
