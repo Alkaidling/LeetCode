@@ -1,4 +1,4 @@
-package leetcode.editor.cn.offer;
+package leetcode.editor.cn.acwing;
 
 /**
  * Created with IntelliJ IDEA.2020.2.3
