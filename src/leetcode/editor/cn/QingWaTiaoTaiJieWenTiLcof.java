@@ -8,27 +8,47 @@ class QingWaTiaoTaiJieWenTiLcof {
         int i = solution.numWays(4);
         System.out.println(i);
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public static final int MOD = 1000000007;
-    public int numWays(int n) {
-        if (n == 0) {
-            return 1;
+    class Solution {
+        public static final int MOD = 1000000007;
+
+        public int numWays(int n) {
+            if (n == 0) {
+                return 1;
+            }
+            if (n < 3) {
+                return n;
+            }
+            int pre =2;
+            int prePre = 1;
+            int res = 0;
+            for (int i = 3; i <= n; i++) {
+                res = (pre + prePre) % MOD;
+                prePre = pre;
+                pre = res;
+            }
+            return res;
         }
-        if (n < 3) {
-            return n;
+
+        public int numWays0(int n) {
+            if (n == 0) {
+                return 1;
+            }
+            if (n < 3) {
+                return n;
+            }
+            int pre2 = 1;  //n-2阶
+            int pre1 = 2;  //n-1阶
+            int result = 0;
+            for (int i = 3; i <= n; i++) {
+                result = (pre2 + pre1) % MOD;
+                pre2 = pre1;
+                pre1 = result;
+            }
+            return result;
         }
-        int pre2 = 1;  //n-2阶
-        int pre1 = 2;  //n-1阶
-        int result = 0;
-        for (int i = 3; i <= n; i++) {
-            result = (pre2 + pre1) % MOD;
-            pre2 = pre1;
-            pre1 = result;
-        }
-        return result;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
