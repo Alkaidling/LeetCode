@@ -22,25 +22,35 @@ class ShuffleAnArray {
 
         public Solution(int[] nums) {
             this.nums = nums;
-            reset = Arrays.copyOf(nums,nums.length);
+            reset = nums;
         }
 
         public int[] reset() {
-            return Arrays.copyOf(reset,nums.length);
+            return reset;
         }
 
         public int[] shuffle() { //O(n) n == 200; 调用次数 == 5 * 1e4; 总次数 == 1e7
-            int[] temp = new int[nums.length];
-            ArrayList<Integer> list = new ArrayList<>();
-            for (int i = 0; i < nums.length; i++) {
-                list.add(nums[i]);
-            }
+            //int[] temp = new int[nums.length];
+            //ArrayList<Integer> list = new ArrayList<>();
+            //for (int i = 0; i < nums.length; i++) {
+            //    list.add(nums[i]);
+            //}
+            //Random random = new Random();
+            //for (int i = 0; i < nums.length; i++) {
+            //    int j = random.nextInt(list.size());
+            //    temp[i] = list.remove(j);
+            //}
+            //return Arrays.copyOf(temp,nums.length);
+            int n = nums.length;
             Random random = new Random();
-            for (int i = 0; i < nums.length; i++) {
-                int j = random.nextInt(list.size());
-                temp[i] = list.remove(j);
+            int[] temp = Arrays.copyOf(nums,n);
+            for (int i = 0; i < n; i++) {
+                int t = i + random.nextInt(n - i);
+                int tt = temp[i];
+                temp[i] = temp[t];
+                temp[t] = tt;
             }
-            return Arrays.copyOf(temp,nums.length);
+            return temp;
         }
     }
 
