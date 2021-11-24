@@ -1,4 +1,5 @@
 package leetcode.editor.cn;
+
 //Java：剑指 Offer 22、链表中倒数第k个节点
 class LianBiaoZhongDaoShuDiKgeJieDianLcof {
     public static void main(String[] args) {
@@ -17,35 +18,52 @@ class LianBiaoZhongDaoShuDiKgeJieDianLcof {
         System.out.println(listNode.val + "->" + listNode.next.val);
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public ListNode getKthFromEnd(ListNode head, int k) {
-        ListNode x = head;
-        ListNode y = head;
-        for (int i = 0; i < k-1; i++) {
-            y = y.next;
+
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     * int val;
+     * ListNode next;
+     * ListNode(int x) { val = x; }
+     * }
+     */
+    class Solution {
+        public ListNode getKthFromEnd(ListNode head, int k) {
+            int count = 0;
+            ListNode temp = head;
+            while (temp != null) {
+                temp = temp.next;
+                count++;
+            }
+            temp = head;
+            for (int i = 0; i < count - k; i++) {
+                temp = temp.next;
+            }
+            return temp;
         }
-        while (y.next != null) {
-            x = x.next;
-            y = y.next;
+
+        public ListNode getKthFromEnd0(ListNode head, int k) {
+            ListNode slow = head;
+            ListNode fast = head;
+            for (int i = 0; i < k; i++) {
+                fast = fast.next;
+            }
+            while (fast != null) {
+                slow = slow.next;
+                fast = fast.next;
+            }
+            return slow;
         }
-        return x;
     }
-}
-//leetcode submit region end(Prohibit modification and deletion)
-public static class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) {
-        val = x;
+
+    //leetcode submit region end(Prohibit modification and deletion)
+    public static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
     }
-}
 }
 
