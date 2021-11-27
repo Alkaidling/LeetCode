@@ -1,58 +1,57 @@
 package leetcode.editor.cn;
 
 
+import sun.font.FontRunIterator;
+
 //Java：剑指 Offer 12、矩阵中的路径
 class JuZhenZhongDeLuJingLcof {
     public static void main(String[] args) {
         Solution solution = new JuZhenZhongDeLuJingLcof().new Solution();
-        char[][] board ={{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
-        //char[][] board ={{'C','A','A'},{'A','A','A'},{'B','C','D'}};
-        String word = "ABCCED";
-        //String word = "AAB";
+        //char[][] board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'C', 'S'}, {'A', 'D', 'E', 'E'}};
+        //char[][] board = {{'A', 'B', 'C', 'E'}, {'S', 'F', 'E', 'S'}, {'A', 'D', 'E', 'E'}};
+        char[][] board ={{'C','A','A'},{'A','A','A'},{'B','C','D'}};
+        //String word = "BCCED";
+        //String word = "ABCESEEEFS";
+        String word = "AAB";
         boolean exist = solution.exist(board, word);
         System.out.println(exist);
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public boolean exist(char[][] board, String word) {
-        int index = 0;
-        boolean result = false;
-        int row = board.length;
-        int col = board[0].length;
-        boolean[][] visit = new boolean[row][col];  //visit数组表示此位置元素是否被访问过。可省略visit数组，直接修改board中的值
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                if(board[i][j] == word.charAt(0)){
-                    result = findNext(visit,board,i,j,word,index);
-                    if(result){
-                        return result;
+    class Solution {
+
+        public boolean exist(char[][] board, String word) {
+            int m = board.length;
+            int n = board[0].length;
+            boolean[][] visit = new boolean[m][n];
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if(board[i][j] == word.charAt(0) && dfs(visit, board, word, 0, i, j)){
+                        return true;
                     }
                 }
             }
+            return false;
         }
-        return result;
-    }
 
-    private boolean findNext(boolean[][] visit, char[][] board, int row, int col, String word, int index) {
-        if (index == word.length()) {
-            return true;
-        }
-        boolean hasPath = false;
-        if(row >= 0 && col >= 0 && row < board.length && col < board[0].length && !visit[row][col] && board[row][col] == word.charAt(index)){
-            index++;
-            visit[row][col] = true;
-            hasPath = findNext(visit,board, row+1, col, word, index)
-                    || findNext(visit,board, row, col+1, word, index)
-                    || findNext(visit,board, row-1, col, word, index)
-                    || findNext(visit,board, row, col-1, word, index);
-            if (!hasPath) {
-                index--;
-                visit[row][col] = false;
+        private boolean dfs(boolean[][] visit, char[][] board, String word, int index, int row, int col) {
+            if (index == word.length()) {
+                return true;
             }
+            int m = board.length;
+            int n = board[0].length;
+            if (row == m || col == n || row < 0 || col < 0 || board[row][col] != word.charAt(index) || visit[row][col]) {
+                return false;
+            }
+            visit[row][col] = true;
+            boolean flag =  dfs(visit, board, word, index + 1, row + 1, col)
+                        || dfs(visit, board, word, index + 1, row, col + 1)
+                        || dfs(visit, board, word, index + 1, row - 1, col)
+                        || dfs(visit, board, word, index + 1, row, col - 1);
+            visit[row][col] = false;
+            return flag;
         }
-        return hasPath;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
