@@ -23,7 +23,7 @@ public class Singleton1 {
 }
 //2、加锁，通过两次判断singleton是否为空，实现加锁操作只执行一次，提高效率
 class Singleton2 {
-    private static Singleton2 singleton;
+    private static volatile Singleton2 singleton;
     private Singleton2(){
     }
     public static Singleton2 getInstance(){
