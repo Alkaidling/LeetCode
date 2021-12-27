@@ -18,14 +18,18 @@ class WordBreak {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
 
-        //TODO
         // dp
         public boolean wordBreak(String s, List<String> wordDict) {
-            Set<String> wordDictSet = new HashSet(wordDict);
+            Set<String> wordDictSet = new HashSet();
+            int max = 0;
+            for (String s1 : wordDict) {
+                wordDictSet.add(s1);
+                max = Math.max(max,s1.length());
+            }
             boolean[] dp = new boolean[s.length() + 1];
             dp[0] = true;
             for (int i = 1; i <= s.length(); i++) {
-                for (int j = 0; j < i; j++) {
+                for (int j = i; j >= 0 && j >= i - max; j--) {
                     if (dp[j] && wordDictSet.contains(s.substring(j, i))) {  //dp[i]= dp[j] && check(s[j..i−1])  (dp[j]:0到j合法，check(s[j..i−1]):检查j到i-1是否合法 )
                         dp[i] = true;
                         break;
