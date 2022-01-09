@@ -17,31 +17,22 @@ class VvXgSW {
     //leetcode submit region begin(Prohibit modification and deletion)
 
     class Solution {
-        class Node {
-            int val;
-            ListNode listNode;
-
-            public Node(int val, ListNode node) {
-                this.val = val;
-                this.listNode = node;
-            }
-        }
 
         public ListNode mergeKLists(ListNode[] lists) {
-            PriorityQueue<Node> queue = new PriorityQueue<>((a, b) -> a.val - b.val);
+            PriorityQueue<ListNode> queue = new PriorityQueue<>((a, b) -> a.val - b.val);
             for (ListNode node : lists) {
                 if (node != null) {
-                    queue.offer(new Node(node.val, node));
+                    queue.offer(node);
                 }
             }
             ListNode pre = new ListNode(-1);
             ListNode t = pre;
             while (!queue.isEmpty()) {
-                Node node = queue.poll();
-                t.next = node.listNode;
+                ListNode node = queue.poll();
+                t.next = node;
                 t = t.next;
-                if (node.listNode.next != null) {
-                    queue.offer(new Node(node.listNode.next.val,node.listNode.next));
+                if (node.next != null) {
+                    queue.offer(node.next);
                 }
             }
             return pre.next;
