@@ -4,7 +4,7 @@ package leetcode.editor.cn;
 class LongestIncreasingSubsequence {
     public static void main(String[] args) {
         Solution solution = new LongestIncreasingSubsequence().new Solution();
-        int[] nums = {2,3,2,3,2,3,1};
+        int[] nums = {7,8,9,1,2,3,4,5};
         //int[] nums = {10,2,5,3,7,101,18};
         //int[] nums = {0,1,0,3,2,3};
         int i = solution.lengthOfLIS(nums);
