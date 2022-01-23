@@ -1,5 +1,6 @@
 package leetcode.editor.cn;
 
+import java.util.HashMap;
 import java.util.TreeMap;
 
 //5896、股票价格波动
@@ -11,18 +12,18 @@ class StockPriceFluctuation {
     //leetcode submit region begin(Prohibit modification and deletion)
     class StockPrice {
 
-        TreeMap<Integer, Integer> map;
+        HashMap<Integer, Integer> map;
         TreeMap<Integer, Integer> mapPrice;
-        int maxPrice, minPrice;
+        int cur;
 
         public StockPrice() {
-            this.map = new TreeMap<>();
+            cur = -1;
+            this.map = new HashMap<>();
             this.mapPrice = new TreeMap<>();
-            this.maxPrice = 0;
-            this.minPrice = Integer.MAX_VALUE;
         }
 
         public void update(int timestamp, int price) {
+            cur = Math.max(cur,timestamp);
             if (map.containsKey(timestamp)) { //更新操作
                 int lastPrice = map.get(timestamp);
                 if (mapPrice.get(lastPrice) == 1) {  //如果只有一个价格是lastPrice，则直接删除
@@ -31,24 +32,20 @@ class StockPriceFluctuation {
                     mapPrice.put(lastPrice, mapPrice.get(lastPrice) - 1); //多个价格是lastPrice,删除一个，然后val-1
                 }
             }
-            mapPrice.put(price, mapPrice.get(price) == null ? 1 : mapPrice.get(price) + 1);  //防止覆盖，如果由重复价钱则val+1
-
-            maxPrice = mapPrice.lastKey();
-            minPrice = mapPrice.firstKey();
-
+            mapPrice.put(price,mapPrice.getOrDefault(price,0) + 1);  //防止覆盖，如果由重复价钱则val+1
             map.put(timestamp, price);
         }
 
         public int current() {
-            return map.get(map.lastKey());
+            return map.get(cur);
         }
 
         public int maximum() {
-            return maxPrice;
+            return mapPrice.lastKey();
         }
 
         public int minimum() {
-            return minPrice;
+            return mapPrice.firstKey();
         }
     }
 
