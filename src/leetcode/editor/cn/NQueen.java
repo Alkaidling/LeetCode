@@ -20,7 +20,7 @@ public class NQueen {
         System.out.println(limit);
 
         long start = System.currentTimeMillis();
-        int i = solution.nQueen(8);
+        int i = solution.nQueen(n);
         long end = System.currentTimeMillis();
 
         System.out.println("s1(n="+ n + "):  " + i);
@@ -29,7 +29,7 @@ public class NQueen {
         System.out.println();
 
         start = System.currentTimeMillis();
-        i = solution2.nQueen(8);
+        i = solution2.nQueen(n);
         end = System.currentTimeMillis();
 
         System.out.println("s2(n=" + n + "):  " + i);
